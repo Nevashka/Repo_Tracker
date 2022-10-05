@@ -1,6 +1,8 @@
-import React from "react"
+import React from 'react';
 import { Header } from '../../Layout'
 import { Search } from '../../components'
+import './style.css'
+
 const Home = () => {
 
   return (
