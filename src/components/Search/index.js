@@ -15,8 +15,8 @@ const Search = ({getRepo}) => {
 
   return (
     <>
-    <div id='container'>
-      <div id='search-card'>
+    
+      
         <form aria-label='form' onSubmit={handleSubmit}>
           <label htmlFor="username">Track your Repos</label>
           <input 
@@ -28,8 +28,8 @@ const Search = ({getRepo}) => {
             required />
           <input type="submit"/>
         </form>
-      </div>
-    </div>
+      
+    
     </>  
   )
 };

@@ -2,7 +2,7 @@ import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
 import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
-import {default as token} from '../../.secret/token'
+import {default as token} from '../.secret/token'
 
 const PrimaryMainTheme = createTheme({
     palette: {
