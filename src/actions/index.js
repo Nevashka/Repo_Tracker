@@ -1,5 +1,5 @@
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
-import {default as token} from '../secret/token'
+import {default as token} from '../components/.secret/token'
 
 const loadResult = ({ results: {login, avatar_url, followers, following}}, username ) => ({
     type: 'LOAD_REPO',
