@@ -18,8 +18,13 @@ const PrimaryMainTheme = createTheme({
 
 const User = () => {
     const [userData, setUserData] = useState([])
-    const user = useSelector (state => state.userReducer.username)
     const params = useParams()
+    const [ username, setUsername ] = useState(params)
+    // const user = useSelector (state => state.username)
+    // console.log(user)
+    
+    console.log(params)
+    
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -35,7 +40,7 @@ const User = () => {
                 // const userData = await axios.get(`https://api.github.com/users/matthewlohl/repos`)
                 // const userData = await axios.get(`https://api.github.com/users/mtsolt`
                 const userData = await octokit.request('GET /users/{owner}', {
-                    owner: 'mtsolt'
+                    owner: params.user
                   })
                 // const data = userData.data[0].owner
                 const data = userData.data
@@ -73,7 +78,8 @@ const User = () => {
                     sx={{ width: 60, height: 60, mb: 1}}
                     />
                 <Box >
-                    <Typography >{userData.login}</Typography>
+                    {/* <Typography >{userData.login}</Typography> */}
+                    <Typography >{params.user}</Typography>
                     <Typography sx={{pt: 1}}>Followers: {userData.followers}</Typography>
                     <Typography sx={{pt: 1}}>Following: {userData.following}</Typography>
                     {/* <Typography >matthewlohl</Typography>
