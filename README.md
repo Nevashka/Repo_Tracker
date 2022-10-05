@@ -34,6 +34,10 @@ For use in production mode:
 
 - run `npm build`
 
+## Demo
+
+![Demo](https://user-images.githubusercontent.com/56311774/194163706-8c073381-9e27-427a-b209-c796e8a4b593.gif)
+
 ## Challenges
 
 - Implement tolken to unlimit number of requests
