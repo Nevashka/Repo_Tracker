@@ -2,7 +2,9 @@ import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
 import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
-import {default as token} from '../../.secret/token'
+import {default as token} from '../../secret/token'
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PrimaryMainTheme = createTheme({
     palette: {
@@ -16,6 +18,8 @@ const PrimaryMainTheme = createTheme({
 
 const User = () => {
     const [userData, setUserData] = useState([])
+    const user = useSelector (state => state.userReducer.username)
+    const params = useParams()
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -49,6 +53,8 @@ const User = () => {
 
 
   return (
+    <div>
+      {params.user}
     <Container sx={{display: 'flex' , justifyContent: 'space-between'}}>
         <ThemeProvider theme={PrimaryMainTheme}>
         <Container maxWidth='xs' sx={{m: 8}}>
@@ -81,6 +87,7 @@ const User = () => {
         <img src="https://streak-stats.demolab.com?user=matthewlohl"/>
 
     </Container>
+    </div>
   )
 };
 
