@@ -1,12 +1,20 @@
 import React, { useState } from "react"
+import getRepo from '../../actions/index'
+import { useDispatch } from "react-redux";
 
-const Search = ({getRepo}) => {
+const Search = () => {
 
   const [ username, setUsername ] = useState('')
 
+  const dispatch = useDispatch()
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    getRepo(username);
+    dispatch(getRepo(username));
+    console.log(username)
+    console.log(setUsername)
+    
+    
   }
 
   const handleInput = (e) => {

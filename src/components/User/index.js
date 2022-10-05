@@ -2,7 +2,13 @@ import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
 import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
+<<<<<<< HEAD
 import {default as token} from '../.secret/token'
+=======
+import {default as token} from '../../secret/token'
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+>>>>>>> 1d32d7584fb749812964e8fc059266cc5f0f5267
 
 const PrimaryMainTheme = createTheme({
     palette: {
@@ -16,6 +22,13 @@ const PrimaryMainTheme = createTheme({
 
 const User = () => {
     const [userData, setUserData] = useState([])
+    const params = useParams()
+    const [ username, setUsername ] = useState(params)
+    // const user = useSelector (state => state.username)
+    // console.log(user)
+    
+    console.log(params)
+    
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -31,7 +44,7 @@ const User = () => {
                 // const userData = await axios.get(`https://api.github.com/users/matthewlohl/repos`)
                 // const userData = await axios.get(`https://api.github.com/users/mtsolt`
                 const userData = await octokit.request('GET /users/{owner}', {
-                    owner: 'mtsolt'
+                    owner: params.user
                   })
                 // const data = userData.data[0].owner
                 const data = userData.data
@@ -49,6 +62,8 @@ const User = () => {
 
 
   return (
+    <div>
+      {params.user}
     <Container sx={{display: 'flex' , justifyContent: 'space-between'}}>
         <ThemeProvider theme={PrimaryMainTheme}>
         <Container maxWidth='xs' sx={{m: 8}}>
@@ -67,7 +82,8 @@ const User = () => {
                     sx={{ width: 60, height: 60, mb: 1}}
                     />
                 <Box >
-                    <Typography >{userData.login}</Typography>
+                    {/* <Typography >{userData.login}</Typography> */}
+                    <Typography >{params.user}</Typography>
                     <Typography sx={{pt: 1}}>Followers: {userData.followers}</Typography>
                     <Typography sx={{pt: 1}}>Following: {userData.following}</Typography>
                     {/* <Typography >matthewlohl</Typography>
@@ -81,6 +97,7 @@ const User = () => {
         <img src="https://streak-stats.demolab.com?user=matthewlohl"/>
 
     </Container>
+    </div>
   )
 };
 
