@@ -1,6 +1,6 @@
 import React from "react"
 
-const Repos = () => {
+const User = () => {
 
   return (
     <div>
@@ -9,4 +9,4 @@ const Repos = () => {
   )
 };
 
-export default Repos;
+export default User;
