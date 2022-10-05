@@ -1,19 +1,20 @@
 import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
-import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
+import { Avatar, Container, ThemeProvider, Box, Typography, Grid, Item } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
-<<<<<<< HEAD
-import {default as token} from '../.secret/token'
-=======
+
 import {default as token} from '../../secret/token'
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
->>>>>>> 1d32d7584fb749812964e8fc059266cc5f0f5267
+
 
 const PrimaryMainTheme = createTheme({
     palette: {
       primary: {
         main: "#F3F3F3"
+      },
+      secondary: {
+        main: '#eee'
       }
     }
   });
@@ -23,11 +24,13 @@ const PrimaryMainTheme = createTheme({
 const User = () => {
     const [userData, setUserData] = useState([])
     const params = useParams()
-    const [ username, setUsername ] = useState(params)
+    const [ username, setUsername ] = useState(params.user)
+    const [ repo, setRepo ] = useState([])
     // const user = useSelector (state => state.username)
     // console.log(user)
     
     console.log(params)
+    console.log(username)
     
 
     useEffect(() => {
@@ -41,15 +44,18 @@ const User = () => {
 
             try {
                 console.log(`Retrieving from API`)
-                // const userData = await axios.get(`https://api.github.com/users/matthewlohl/repos`)
-                // const userData = await axios.get(`https://api.github.com/users/mtsolt`
                 const userData = await octokit.request('GET /users/{owner}', {
-                    owner: params.user
+                    owner: username
                   })
-                // const data = userData.data[0].owner
                 const data = userData.data
                 setUserData(data)
-                console.log(data)
+
+                const repoData = await octokit.request('GET /users/{owner}/repos', {
+                  owner: username
+                })
+                const repo = repoData.data
+                setRepo(repo)
+                console.log(repo)
             } catch (error) {
                 console.log(error)
                 
@@ -58,21 +64,52 @@ const User = () => {
         fetchUserInfo();
     }, [])
 
-    
+    const renderRepos = repo.map((repo, index) => {
+      return(
+          <>
+            <Box
+              sx={{
+              color: 'white',
+              bgcolor: 'text.primary',
+              borderRadius: '20px',
+              mt: 2,
+              p: 3
+            }}
+              
+              key={index}
+            >
+              <Box sx={{display: 'flex', justifyContent: 'space-evenly', pt: 3, pb: 3}}>
+                <Typography >{repo.name}</Typography>
+                <Typography >{repo.visibility}</Typography>
+              </Box>
+              <Grid container sx={{pb: 2}}>
+                <Grid item xs={5} sx={{pl: 2, mt: 2}}>
+                  <Grid item>Description: {repo.description}</Grid>
+                  <Grid item sx={{pt: 1}}>Forks: {repo.forks_count}</Grid>
+                </Grid>
+                <Grid item xs={5} sx={{pl: 2, mt: 2}}>
+                  <Grid item>Language: {repo.language}</Grid>
+                  <Grid item  sx={{pt: 1}}>Last update: {repo.updated_at}</Grid>
+                </Grid>
+              </Grid>
+
+            </Box>
+          </>
+
+      )
+    })
 
 
   return (
     <div>
-      {params.user}
     <Container sx={{display: 'flex' , justifyContent: 'space-between'}}>
         <ThemeProvider theme={PrimaryMainTheme}>
         <Container maxWidth='xs' sx={{m: 8}}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                // backgroundColor: 'primary.main',
                 border: '1px solid lightgrey',
-                // boxShadow: 3,
+                borderRadius: '5px',
                 p: 6,
                 }}>
                 
@@ -83,7 +120,7 @@ const User = () => {
                     />
                 <Box >
                     {/* <Typography >{userData.login}</Typography> */}
-                    <Typography >{params.user}</Typography>
+                    <Typography >{username}</Typography>
                     <Typography sx={{pt: 1}}>Followers: {userData.followers}</Typography>
                     <Typography sx={{pt: 1}}>Following: {userData.following}</Typography>
                     {/* <Typography >matthewlohl</Typography>
@@ -97,6 +134,12 @@ const User = () => {
         <img src="https://streak-stats.demolab.com?user=matthewlohl"/>
 
     </Container>
+    <ThemeProvider theme={PrimaryMainTheme}>
+      <Container sx={{bgcolor: 'text.disabled', pt: 3}}>
+        {renderRepos}
+      </Container>
+    </ThemeProvider>
+    
     </div>
   )
 };
