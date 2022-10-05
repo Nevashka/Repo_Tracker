@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <nav>
-      <img src="https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU" alt="github logo"></img>
+      <img src="https://www.kindpng.com/picc/m/255-2558173_github-logo-png-transparent-png.png" alt="github logo"></img>
         <h3>Search Repo</h3>
     </nav>
   )

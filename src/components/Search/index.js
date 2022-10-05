@@ -1,19 +1,19 @@
 import React, { useState } from "react"
 import getRepo from '../../actions/index'
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
 
 const Search = () => {
 
   const [ username, setUsername ] = useState('')
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(getRepo(username));
+    // dispatch(getRepo(username));
     console.log(username)
     console.log(setUsername)
-    
     
   }
 
@@ -34,7 +34,8 @@ const Search = () => {
             value={ username }
             onChange={handleInput}
             required />
-          <input type="submit"/>
+          {/* <input type="submit"/> */}
+          <Link to={username}><input type="submit" /></Link>
         </form>
       </div>
     </div>
