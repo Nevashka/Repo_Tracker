@@ -2,9 +2,13 @@ import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
 import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
+<<<<<<< HEAD
+import {default as token} from '../.secret/token'
+=======
 import {default as token} from '../../secret/token'
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+>>>>>>> 1d32d7584fb749812964e8fc059266cc5f0f5267
 
 const PrimaryMainTheme = createTheme({
     palette: {

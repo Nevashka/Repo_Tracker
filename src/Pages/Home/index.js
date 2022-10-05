@@ -1,14 +1,15 @@
 import React from 'react';
 import { Header } from '../../Layout'
 import { Search } from '../../components'
-import './style.css'
 
 const Home = () => {
 
   return (
     <div>
-        <Header />
-      <Search />
+      <Header />
+      <div id='container'>
+        <Search />
+      </div>
     </div>
   )
 };
