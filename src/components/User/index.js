@@ -2,6 +2,7 @@ import React, { useEffect , useState } from "react"
 import { Octokit, App } from "https://cdn.skypack.dev/octokit?dts";
 import { Avatar, Container, ThemeProvider, Box, Typography } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
+import {default as key} from '../../.secret/token'
 
 const PrimaryMainTheme = createTheme({
     palette: {
@@ -18,24 +19,11 @@ const User = () => {
 
     useEffect(() => {
         const fetchUserInfo = async () => {
-            // fetch(`https://api.github.com/users/mtsolt`, {
-                //     method: 'GET',
-                //     headers: {
-                    //         'Authorization': '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',
-                    //     },
-                    // }).then (response => {
-                        //     return response.data
-                        // }).then(data => {
-                            //     console.log(data)
-                            
-                            // }).catch(error => {
-                                //     console.log(error)
-                                
-                                // })
-        console.log(`Use Effect is running`)
 
+        console.log(`Use Effect is running`)
+            
             const octokit = new Octokit({
-                auth: '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'
+                auth: key
               })
 
             try {
@@ -54,7 +42,7 @@ const User = () => {
                 
             }
         }
-        // fetchUserInfo();
+        fetchUserInfo();
     }, [])
 
     
@@ -78,16 +66,13 @@ const User = () => {
                     alt="GitHub avatar"
                     sx={{ width: 60, height: 60, mb: 1}}
                     />
-                {/* <p>{userData.login}</p> */}
-                {/* <p>{userData.followers}</p>
-                <p>{userData.following}</p> */}
                 <Box >
-                    {/* <Typography >{userData.login}</Typography>
+                    <Typography >{userData.login}</Typography>
                     <Typography sx={{pt: 1}}>Followers: {userData.followers}</Typography>
-                    <Typography sx={{pt: 1}}>Following: {userData.following}</Typography> */}
-                    <Typography >matthewlohl</Typography>
+                    <Typography sx={{pt: 1}}>Following: {userData.following}</Typography>
+                    {/* <Typography >matthewlohl</Typography>
                     <Typography sx={{pt: 1}}>Followers: 12</Typography>
-                    <Typography sx={{pt: 1}}>Following: 20</Typography>
+                    <Typography sx={{pt: 1}}>Following: 20</Typography> */}
                 </Box>
             </Box>
         </Container>
