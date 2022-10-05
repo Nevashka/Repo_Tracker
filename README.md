@@ -32,11 +32,4 @@ To use in production mode:
 
 - Achieve what was planned
 
-## Our Stats 😄
 
-
-![Matthew's github stats](https://github-readme-stats.vercel.app/api?username=matthewlohl&show_icons=true&theme=tokyonight)
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=matthewlohl&theme=tokyonight" alt="mystreak"/>
-
-![Camila's's github stats](https://github-readme-stats.vercel.app/api?username=Nevashka&show_icons=true&theme=tokyonight)
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=Nevashka&theme=tokyonight" alt="mystreak"/>
